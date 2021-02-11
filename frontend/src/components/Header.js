@@ -2,6 +2,8 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
+// Header component takes NavBar to Navigate for different compnnents
+
 const Header = () => {
 	return (
 		<header>
