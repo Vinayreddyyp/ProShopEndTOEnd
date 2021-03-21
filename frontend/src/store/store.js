@@ -6,17 +6,25 @@ import {
 } from '../reducers/productReducers';
 import { cartReducer } from '../reducers/cartReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { userLoginReducer } from '../reducers/userReducer';
 
 const reducer = combineReducers({
 	productList: productListReducer,
 	productDetails: productDetailReducer,
-	cart: cartReducer
+	cart: cartReducer,
+	userLogin: userLoginReducer
 });
 const cartItemsFromStorage = localStorage.getItem('cartItems')
 	? JSON.parse(localStorage.getItem('cartItems'))
 	: [];
+
+const userLoginStorage = localStorage.getItem('userInfo')
+	? JSON.parse(localStorage.getItem('userInfo'))
+	: null;
+
 const initialState = {
-	cart: { cartItems: cartItemsFromStorage }
+	cart: { cartItems: cartItemsFromStorage },
+	userLogin: { userInfo: userLoginStorage }
 };
 const middleware = [thunk];
 
