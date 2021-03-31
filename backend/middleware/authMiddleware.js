@@ -10,12 +10,19 @@ const protect = asyncHandler(async (req, res, next) => {
 		req.headers.authorization.startsWith('Bearer')
 	) {
 		try {
-			token = req.headers.authorization.split('')[1];
+			token = req.headers.authorization.split(' ')[1];
 			console.log('token', token);
-			const decoded = jwt.verify(token);
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
 			console.log('decoded', decoded);
+			req.user = await (await User.findById(decoded.id)).isSelected(
+				'-password'
+			);
 			next();
-		} catch (error) {}
+		} catch (error) {
+			console.error(error);
+			res.status(401);
+			throw new Error('token failed');
+		}
 	}
 	if (!token) {
 		res.status(401);
