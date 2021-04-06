@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
+import {
+	CART_ADD_ITEM,
+	CART_REMOVE_ITEM,
+	SHIPPING_DETAILS_INFORMATION
+} from '../constants/cartConstants';
 
 export const addCart = (id, qty) => async (dispatch, getState) => {
 	const { data } = await axios.get(`/api/products/${id}`);
@@ -25,4 +29,13 @@ export const removeFromcart = id => (dispatch, getState) => {
 		payload: id
 	});
 	localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+};
+
+export const saveShippingAddress = data => (dispatch, getState) => {
+	console.log('data ', data);
+	dispatch({
+		type: SHIPPING_DETAILS_INFORMATION,
+		payload: data
+	});
+	localStorage.setItem('shippingAddress', JSON.stringify(data));
 };
