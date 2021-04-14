@@ -6,7 +6,9 @@ import { logout } from '../actions/userActions';
 
 // Header component takes NavBar to Navigate for different compnnents
 
-const Header = props => {
+const Header = ({ props, history, location }) => {
+	console.log('nav history', history);
+	console.log('nav location', location);
 	const dispatch = useDispatch();
 	const userLogin = useSelector(state => state.userLogin);
 	const { userInfo } = userLogin;
