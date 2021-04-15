@@ -1,8 +1,14 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
+import {
+	CART_ADD_ITEM,
+	CART_REMOVE_ITEM,
+	CART_SAVE_PAYMENT_METHOD,
+	SHIPPING_DETAILS_INFORMATION
+} from '../constants/cartConstants';
 
 export const cartReducer = (
 	state = {
-		cartItems: []
+		cartItems: [],
+		shippingAddress: {}
 	},
 	action
 ) => {
@@ -36,6 +42,18 @@ export const cartReducer = (
 					console.log('x', x.product, action.payload);
 					return x.product === action.payload;
 				})
+			};
+
+		case SHIPPING_DETAILS_INFORMATION:
+			return {
+				...state,
+				shippingAddress: action.payload
+			};
+
+		case CART_SAVE_PAYMENT_METHOD:
+			return {
+				...state,
+				paymentMethod: action.payload
 			};
 
 		default:
