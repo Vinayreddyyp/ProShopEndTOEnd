@@ -3,7 +3,7 @@ import { Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
-	console.log('step3', step3);
+	console.log('step4', step4);
 	return (
 		<Nav>
 			<Nav.Item>
@@ -35,7 +35,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 			</Nav.Item>
 			<Nav.Item>
 				{step4 ? (
-					<LinkContainer to="/placeholder">
+					<LinkContainer to="/placeorder">
 						<Nav.Link>Place Order</Nav.Link>
 					</LinkContainer>
 				) : (
